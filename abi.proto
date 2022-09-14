@@ -1,0 +1,38 @@
+syntax = "proto3";
+package abi;
+
+service ChatService {
+  //login user and get token
+  rpc Login(LoginRequest) returns (Token) {}
+  rpc SendMessage(NewChatMessage) returns (SendMessageResponse) {}
+  rpc GetMessage(GetMessageRequest) returns (stream ChatMessage) {}
+}
+// data send to server for login
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message Token {
+  string data = 1;
+}
+
+message NewChatMessage {
+  string room = 1;
+  string content = 2;
+}
+
+message SendMessageResponse   {
+
+}
+
+message GetMessageRequest {
+
+}
+
+message ChatMessage {
+  string sender = 1;
+  string room = 2;
+  string content = 3;
+  int64 timestamp = 4;
+}
